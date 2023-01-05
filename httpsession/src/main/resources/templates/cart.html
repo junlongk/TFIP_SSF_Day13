@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" data-th-action="@{/cart}" data-th-object="${item}">
+      Product Name: <input type="text" data-th-field="*{name}"/>
+      Quantity: <input type="number" min="1" step="0.01" data-th-field="*{quantity}"/>
+
+      <button type="submit">Add</button>
+    </form>
+
+    <div data-th-unless="${#lists.isEmpty(cart.contents)}">
+      <div data-th-each="it : ${cart.contents}" data-th-object="${it}">
+        <span data-th-text="*{name}"></span>
+        <span data-th-text="*{quantity}"></span>
+      </div>
+    </div>
+</body>
+</html>
